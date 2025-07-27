@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+     <link rel="stylesheet" href="CSS/(09)Login Page.css" />
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Yummy Express</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(02) Favourite menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(07) About Us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(08) Help and Support.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.png" alt="New Logo" class="logo">
+            <div class="brand-name">
+                <h1>
+                    Yummy <span>Express</span>
+                </h1>
+                <p>Your favorite meals, delivered fresh!</p>
+            </div>
+        </div>
+        <div class="header-overlay"></div>
+    </header>
+
+    <!-- Login Section -->
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="email" id="email" placeholder="Email / Phone Number" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                    <span class="loading"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+
+            <div class="additional-links">
+                <p><a href="#">Forgot Password?</a></p>
+                <p>Don't have an account? <a href="(03) Update Profile.html">Sign Up</a></p>
+                <p>Having trouble logging in? <a href="(08) Help and Support.html">Contact Customer Support</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Contact Button -->
+    <div class="contact-btn" onclick="window.location.href='contact.html';">
+        <i class="fas fa-phone-alt"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© For more details, Follow us on Social Media Platforms.</p>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/yumm.yexpress?igsh=NTc4MTIwNjQ2YQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:9229964355" target="_blank"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://wa.me/message/G3OECKFIDWUVP1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:example@email.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Show loading spinner
+            document.querySelector('.loading').style.display = 'inline-block';
+            document.getElementById('loginButton').disabled = true;
+
+            // Simulate a login process (you can add your AJAX call here)
+            setTimeout(function () {
+                // After the process is done, hide the spinner and enable the button
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('loginButton').disabled = false;
+
+                // Show an alert or redirect the user after successful login
+                alert("Login successful!");
+            }, 2000); // Simulate a delay (e.g., server request)
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

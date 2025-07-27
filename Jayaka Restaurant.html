@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yummy Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="CSS/Jayaka Restaurant.css" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Jayaka Restaurant</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: #fff;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(02) Favourite menu.html"><i class="fas fa-utensils"></i> Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(07) About Us.html"><i class="fas fa-info-circle"></i> About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(08) Help and Support.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.png" alt="New Logo" class="logo" />
+            <div class="brand-name">
+                <h1>
+                    <span class="yummy-color">Yummy</span> <span class="express-color">Express</span>
+                </h1>
+                <p>Your favorite meals, delivered fresh!</p>
+            </div>
+        </div>
+        <div class="search-container">
+        <div class="search-box">
+            <input id="search-input" type="text" placeholder="Search restaurants, food menus, etc." aria-label="Search" />
+            <i class="fas fa-search"></i>
+        </div>
+        </div>
+    </header>
+
+    <section class="dish-menu container my-5">
+        <h2 class="text-center mb-4" style="font-family: 'Georgia', serif; color: #111;">Our Special Dishes</h2>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons d-flex justify-content-center gap-3 mb-4 flex-wrap">
+            <button class="filter-btn active" data-filter="all" aria-label="Show All">
+                <i class="fas fa-th-large"></i> All
+            </button>
+            <button class="filter-btn" data-filter="veg" aria-label="Vegetarian">
+                <i class="fas fa-leaf"></i> Veg
+            </button>
+            <button class="filter-btn" data-filter="non-veg" aria-label="Non Vegetarian">
+                <i class="fas fa-drumstick-bite"></i> Non-Veg
+            </button>
+            <button class="filter-btn" data-filter="dessert" aria-label="Dessert">
+                <i class="fas fa-ice-cream"></i> Dessert
+            </button>
+            <button class="filter-btn" data-filter="sweets" aria-label="Sweets">
+                <i class="fas fa-cookie-bite"></i> Sweets
+            </button>
+            <button class="filter-btn" data-filter="cold-drink" aria-label="Cold Drink">
+                <i class="fas fa-cocktail"></i> Cold Drink
+            </button>
+        </div>
+
+            <div class="d-flex flex-column gap-4">
+                
+                <!-- Dishes -->
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="60" data-full-price="100">
+    <img src="IMAGES/Mix Veg.jpg" alt="Mix Veg" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Mix+Veg';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Mix Veg</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">A delightful medley of fresh seasonal vegetables cooked to perfection.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹100</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-3" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-3" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="50" data-full-price="90">
+    <img src="IMAGES/Pakora.jpg" alt="Kadhi Pakora" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Kadhi+Pakora';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Kadhi Pakora</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Tangy yogurt-based curry with crispy gram flour fritters.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹90</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-4" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-4" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="60" data-full-price="100">
+    <img src="IMAGES/Chana Masala.jpg" alt="Chana Masala" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Chana+Masala';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Chana Masala</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Spicy and tangy chickpea curry, a North Indian favorite.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹100</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-5" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-5" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="80" data-full-price="140">
+    <img src="IMAGES/panner kadhai.webp" alt="Paneer Butter Masala" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Paneer+Butter+Masala';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Paneer Butter Masala</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Creamy and rich cottage cheese curry in a buttery tomato gravy.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹140</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-6" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-6" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="50" data-full-price="90">
+    <img src="IMAGES/Dal Fry.jpg" alt="Dal Fry" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Dal+Fry';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Dal Fry</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Classic lentil preparation tempered with aromatic spices.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹90</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-7" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-7" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-full-price="8">
+    <img src="IMAGES/Roti.jpg" alt="Tawa Roti" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Tawa+Roti';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Tawa Roti (1 piece)</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Freshly made whole wheat flatbread cooked on a griddle.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹8</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="40" data-full-price="70">
+    <img src="IMAGES/rice.jpg" alt="Rice (Plain)" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Plain+Rice';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Rice (Plain)</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Fluffy steamed basmati rice, perfect accompaniment to any curry.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹70</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-9" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-9" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="veg" style="background: #fff8f0;" data-half-price="80" data-full-price="130">
+    <img src="IMAGES/Veg Thali.jpg" alt="Veg Thali" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Veg+Thali';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Veg Thali</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">A complete vegetarian meal with assorted curries, rice, and bread.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹130</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-10" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-10" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="90" data-full-price="160">
+    <img src="IMAGES/Chicken Curry.jpg" alt="Chicken Curry" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Chicken+Curry';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Chicken Curry</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Classic chicken curry cooked in a rich, aromatic gravy.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹160</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-11" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-11" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="100" data-full-price="180">
+    <img src="IMAGES/Chicken Curry.jpg" alt="Chicken Masala" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Chicken+Masala';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Chicken Masala</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Spicy chicken dish cooked with a blend of aromatic Indian spices.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹180</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-12" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-12" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="130" data-full-price="230">
+    <img src="IMAGES/Mutton.jpg" alt="Mutton Curry" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Mutton+Curry';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Mutton Curry</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Tender mutton pieces cooked in a rich, flavorful gravy.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹230</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-13" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-13" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="100" data-full-price="180">
+    <img src="IMAGES/Fish Curry.jpg" alt="Fish Curry (Local Fish)" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Fish+Curry';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Fish Curry (Local Fish)</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Fresh local fish cooked in a tangy and spicy curry.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹180</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-14" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-14" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="60" data-full-price="100">
+    <img src="IMAGES/Egg Curry.jpg" alt="Egg Curry" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Egg+Curry';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Egg Curry</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Boiled eggs cooked in a rich and flavorful onion-tomato gravy.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹100</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-15" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-15" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="100" data-full-price="160">
+    <img src="IMAGES/Chicken Biryani.jpg" alt="Chicken Biryani" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Chicken+Biryani';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Chicken Biryani</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Fragrant basmati rice cooked with succulent chicken pieces and spices.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹160</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-16" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-16" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="non-veg" style="background: #fff8f0;" data-half-price="140" data-full-price="220">
+    <img src="IMAGES/Mutton Biryani.jpg" alt="Mutton Biryani" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Mutton+Biryani';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Mutton Biryani</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Rich and flavorful basmati rice with tender mutton, slow-cooked to perfection.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹220</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-17" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-17" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="sweets" style="background: #fff8f0;" data-half-price="40" data-full-price="70">
+    <img src="IMAGES/Rice Kheer.jpg" alt="Rice Kheer" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Rice+Kheer';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Rice Kheer</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Creamy Indian rice pudding, subtly flavored with cardamom and nuts.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹70</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-18" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-18" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="sweets" style="background: #fff8f0;" data-half-price="40" data-full-price="70">
+    <img src="IMAGES/Rasmalai.jpg" alt="Rasmalai" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Rasmalai';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Rasmalai (2 pcs)</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Soft cottage cheese dumplings soaked in sweetened, flavored milk.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹70</span>
+            <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                (4.5)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+            <label>
+                <input type="radio" name="plate-size-19" value="half" aria-checked="false" />
+                Half Plate
+            </label>
+            <label>
+                <input type="radio" name="plate-size-19" value="full" aria-checked="true" checked />
+                Full Plate
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="cold-drink" style="background: #fff8f0;" data-half-price="20" data-full-price="40">
+    <img src="IMAGES/Coca Cola.jpg" alt="Coca Cola / Pepsi" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Coca+Cola';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Coca Cola / Pepsi</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Refreshing carbonated soft drink.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹40</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select drink size">
+            <label>
+                <input type="radio" name="plate-size-20" value="half" aria-checked="false" />
+                200ml
+            </label>
+            <label>
+                <input type="radio" name="plate-size-20" value="full" aria-checked="true" checked />
+                500ml
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+
+<div class="dish-item d-flex align-items-center gap-2 p-2 rounded shadow-sm" data-category="cold-drink" style="background: #fff8f0;" data-half-price="30" data-full-price="50">
+    <img src="IMAGES/Lemon Soda.jpg" alt="Lemon Soda" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" onerror="this.onerror=null;this.src='https://placehold.co/100x75/E0E0E0/333333?text=Lemon+Soda';" />
+    <div class="dish-info flex-grow-1">
+        <h5 style="font-weight: bold; color: #8B0000;">Lemon Soda</h5>
+        <p class="mb-1" style="font-size: 0.9rem; color: #555;">Zesty and refreshing lemon-flavored soda.</p>
+        <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+            <span class="price price-display" style="font-weight: 600;">Price: ₹50</span>
+            <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="fas fa-star" style="color: #f0c040;"></i>
+                <i class="far fa-star" style="color: #f0c040;"></i>
+                (4.0)
+            </span>
+        </div>
+        <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select drink size">
+            <label>
+                <input type="radio" name="plate-size-21" value="half" aria-checked="false" />
+                Small
+            </label>
+            <label>
+                <input type="radio" name="plate-size-21" value="full" aria-checked="true" checked />
+                Large
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-sm btn-danger buy-now-btn" style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+        Buy Now
+    </button>
+</div>
+                
+
+        </div>
+    </section>
+
+    <!-- Floating Cart Icon -->
+    <div id="floating-cart" aria-label="Shopping Cart" role="button" tabindex="0" title="View Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" style="position: absolute; top: 5px; right: 5px; background: #f093fb; color: #8B0000; border-radius: 50%; padding: 2px 6px; font-size: 0.8rem; font-weight: bold; display: none;">0</span>
+    </div>
+
+    <!-- Cart Dialog -->
+    <div id="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
+        <h4 id="cart-title">Your Cart</h4>
+        <div id="cart-items"></div>
+        <div id="cart-subtotal">Subtotal: ₹0.00</div>
+        <button id="cart-buy-now-btn" aria-label="Buy Now">Buy Now</button>
+    </div>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links container">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><i class="fas fa-utensils"></i> <a href="(02) Favourite menu.html" style="text-decoration:none; color: inherit;">Menu</a></li>
+            <li><i class="fas fa-info-circle"></i> <a href="(07) About Us.html" style="text-decoration:none; color: inherit;">About Us</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="(08) Help and Support.html" style="text-decoration:none; color: inherit;">Contact Us</a></li>
+        </ul>
+        <div class="available-in">
+            Available in Different Areas of Koderma Distict Of Jharkhand  :<br />
+            <span>Jhumri Telaiya</span><span>Koderma</span><span>Telaiya Dam</span><br />
+            <span>Karma</span><span>Gumo</span><span>Banjhedih locality</span>
+        </div>
+        <div class="follow-social">Follow/Contacts Us on Social Media</div>
+        <div class="follow-social-icons">
+            <a href="https://www.instagram.com/yumm.yexpress?igsh=NTc4MTIwNjQ2YQ==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/message/G3OECKFIDWUVP1" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="Yummyexpressfastfooddelivery@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://t.me/+919229964355" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+    </section>
+
+    <script>
+        // Back to top button
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.textContent = '↑';
+        backToTopBtn.setAttribute('aria-label', 'Back to top');
+        backToTopBtn.style.position = 'fixed';
+        backToTopBtn.style.bottom = '80px';
+        backToTopBtn.style.right = '20px';
+        backToTopBtn.style.padding = '10px 15px';
+        backToTopBtn.style.fontSize = '1.5rem';
+        backToTopBtn.style.borderRadius = '50%';
+        backToTopBtn.style.border = 'none';
+        backToTopBtn.style.backgroundColor = '#8B0000';
+        backToTopBtn.style.color = '#fff8f0';
+        backToTopBtn.style.cursor = 'pointer';
+        backToTopBtn.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.5)';
+        backToTopBtn.style.display = 'none';
+        backToTopBtn.style.transition = 'transform 0.3s ease';
+        backToTopBtn.addEventListener('mouseenter', () => {
+            backToTopBtn.style.transform = 'scale(1.1)';
+            backToTopBtn.style.backgroundColor = '#f093fb';
+            backToTopBtn.style.color = '#333';
+        });
+        backToTopBtn.addEventListener('mouseleave', () => {
+            backToTopBtn.style.transform = 'scale(1)';
+            backToTopBtn.style.backgroundColor = '#8B0000';
+            backToTopBtn.style.color = '#fff8f0';
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.body.appendChild(backToTopBtn);
+
+        // Price update logic for dish plate selection
+        document.querySelectorAll('.dish-item').forEach(dish => {
+            const priceDisplay = dish.querySelector('.price-display');
+            const halfPrice = parseFloat(dish.getAttribute('data-half-price'));
+            const fullPrice = parseFloat(dish.getAttribute('data-full-price'));
+            const radios = dish.querySelectorAll('input[type="radio"]');
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    if (radio.checked) {
+                        if (radio.value === 'half') {
+                            priceDisplay.textContent = 'Price: ₹' + halfPrice;
+                        } else if (radio.value === 'full') {
+                            priceDisplay.textContent = 'Price: ₹' + fullPrice;
+                        }
+                    }
+                });
+            });
+        });
+
+        // Update Buy Now button to add selected plate size price to cart
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const dishItem = e.target.closest('.dish-item');
+                const name = dishItem.querySelector('h5').textContent;
+                const image = dishItem.querySelector('img').src;
+                const selectedPlate = dishItem.querySelector('input[type="radio"]:checked');
+                let price = 0;
+                let plateSize = 'full';
+                if (selectedPlate) {
+                    plateSize = selectedPlate.value;
+                    if (plateSize === 'half') {
+                        price = parseFloat(dishItem.getAttribute('data-half-price'));
+                    } else if (plateSize === 'full') {
+                        price = parseFloat(dishItem.getAttribute('data-full-price'));
+                    }
+                } else {
+                    price = parseFloat(dishItem.getAttribute('data-full-price'));
+                }
+
+                // Check if item with same name and plateSize exists in cart
+                const existingItem = cart.find(item => item.name === name && item.plateSize === plateSize);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, image, plateSize, quantity: 1 });
+                }
+
+                updateCartCount();
+                renderCartItems();
+                cartDialog.style.display = 'block';
+                cartDialog.focus();
+            });
+        });
+
+        // Filter buttons functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const dishItemsContainer = document.querySelector('.dish-menu > div.d-flex.flex-column');
+        const dishItems = document.querySelectorAll('.dish-item');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+
+        // Collect filtered items
+        const filteredItems = [];
+        const hiddenItems = [];
+
+        dishItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                filteredItems.push(item);
+            } else {
+                hiddenItems.push(item);
+            }
+        });
+
+        // Clear container
+        dishItemsContainer.innerHTML = '';
+
+        // Append filtered items first
+        filteredItems.forEach(item => {
+            item.style.display = 'flex';
+            item.style.opacity = 0;
+            dishItemsContainer.appendChild(item);
+            setTimeout(() => {
+                item.style.opacity = 1;
+                item.style.transition = 'opacity 0.5s ease';
+            }, 10);
+        });
+
+        // Hide non-matching items
+        hiddenItems.forEach(item => {
+            item.style.opacity = 0;
+            setTimeout(() => {
+                item.style.display = 'none';
+            }, 500);
+        });
+    });
+});
+
+        // Cart functionality
+        const cart = [];
+        const cartCount = document.getElementById('cart-count');
+        const cartDialog = document.getElementById('cart-dialog');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartBuyNowBtn = document.getElementById('cart-buy-now-btn');
+        const floatingCart = document.getElementById('floating-cart');
+
+        function updateCartCount() {
+            if (cart.length > 0) {
+                cartCount.style.display = 'inline-block';
+                // Show total quantity of all items in cart
+                const totalQuantity = cart.reduce((sum, item) => {
+                    const qty = Number(item.quantity);
+                    return sum + (isNaN(qty) ? 0 : qty);
+                }, 0);
+                cartCount.textContent = totalQuantity;
+            } else {
+                cartCount.style.display = 'none';
+            }
+        }
+
+        function calculateSubtotal() {
+            return cart.reduce((total, item) => {
+                const price = Number(item.price);
+                const quantity = Number(item.quantity);
+                if (isNaN(price) || isNaN(quantity)) {
+                    return total;
+                }
+                return total + price * quantity;
+            }, 0);
+        }
+
+        function renderCartItems() {
+            cartItemsContainer.innerHTML = '';
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.name;
+
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'cart-item-details';
+
+                const name = document.createElement('h6');
+                name.textContent = `${item.name} (${item.plateSize} Plate)`;
+
+                const price = document.createElement('span');
+                price.textContent = `₹${(item.price * item.quantity).toFixed(2)} (${item.quantity}x ₹${item.price.toFixed(2)})`;
+
+                // Add remove button for each cart item
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                removeBtn.setAttribute('aria-label', `Remove ${item.name} (${item.plateSize} Plate) from cart`);
+                removeBtn.style.marginLeft = '10px';
+                removeBtn.style.backgroundColor = '#8B0000';
+                removeBtn.style.color = '#fff8f0';
+                removeBtn.style.border = 'none';
+                removeBtn.style.borderRadius = '5px';
+                removeBtn.style.padding = '2px 6px';
+                removeBtn.style.cursor = 'pointer';
+                removeBtn.addEventListener('click', () => {
+                    // Remove item from cart
+                    const index = cart.indexOf(item);
+                    if (index > -1) {
+                        cart.splice(index, 1);
+                        updateCartCount();
+                        renderCartItems();
+                    }
+                });
+
+                detailsDiv.appendChild(name);
+                detailsDiv.appendChild(price);
+                detailsDiv.appendChild(removeBtn);
+
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(detailsDiv);
+
+                cartItemsContainer.appendChild(itemDiv);
+            });
+            cartSubtotal.textContent = `Subtotal: ₹${calculateSubtotal().toFixed(2)}`;
+        }
+
+        function toggleCartDialog() {
+            if (cartDialog.style.display === 'none' || cartDialog.style.display === '') {
+                renderCartItems();
+                cartDialog.style.display = 'block';
+                cartDialog.focus();
+            } else {
+                cartDialog.style.display = 'none';
+            }
+        }
+
+
+        // Toggle cart dialog on floating cart click
+        floatingCart.addEventListener('click', () => {
+            toggleCartDialog();
+        });
+
+        // Close cart dialog when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!cartDialog.contains(e.target) && !floatingCart.contains(e.target)) {
+                cartDialog.style.display = 'none';
+            }
+        });
+
+        // Buy Now button in cart dialog
+        cartBuyNowBtn.addEventListener('click', () => {
+            // Redirect to Payment Gateway page
+            window.location.href = 'Payment Gateway.html';
+        });
+
+        // Search box filtering functionality
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.trim().toLowerCase();
+            const dishItemsContainer = document.querySelector('.dish-menu > div.d-flex.flex-column');
+            const dishItems = document.querySelectorAll('.dish-item');
+
+            const matchingItems = [];
+            const nonMatchingItems = [];
+
+            dishItems.forEach(item => {
+                const dishName = item.querySelector('h5').textContent.toLowerCase();
+                if (filter === '' || dishName.startsWith(filter)) {
+                    matchingItems.push(item);
+                } else {
+                    nonMatchingItems.push(item);
+                }
+            });
+
+            // Clear container and append matching items first, then non-matching
+            matchingItems.forEach(item => {
+                item.style.display = 'flex';
+                item.style.opacity = 0;
+                dishItemsContainer.appendChild(item);
+                setTimeout(() => {
+                    item.style.opacity = 1;
+                    item.style.transition = 'opacity 0.5s ease';
+                }, 10);
+            });
+
+            nonMatchingItems.forEach(item => {
+                item.style.opacity = 0;
+                setTimeout(() => {
+                    item.style.display = 'none';
+                    dishItemsContainer.appendChild(item);
+                }, 500);
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Filter Buttons Styles */
+        .filter-buttons {
+            gap: 12px;
+        }
+
+        .filter-btn {
+            background-color: #8B0000;
+            color: #fff8f0;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            user-select: none;
+        }
+
+        .filter-btn i {
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background-color: #f093fb;
+            color: #8B0000;
+            transform: scale(1.1);
+        }
+
+        .filter-btn.active {
+            background-color: #f093fb;
+            color: #8B0000;
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.7);
+            transform: scale(1.1);
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Cancelled - Yummy Express</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nosifer', cursive;
+            font-size: 3.5rem;
+            color: #d9534f;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 85%;
+            max-width: 400px;
+            padding: 20px;
+            transform: translateY(-20px);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #d9534f;
+            margin-bottom: 15px;
+            animation: shake 1s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .error-message h2 {
+            font-size: 1.8rem;
+        }
+
+        .error-message p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .mickey-logo img {
+            width: 100%;
+            max-width: 150px;
+            margin: 20px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .retry-btn, .home-btn {
+            background: #d9534f;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            width: 80%;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .retry-btn:hover, .home-btn:hover {
+            background: #c9302c;
+            transform: translateY(-5px);
+        }
+
+        .retry-btn:active, .home-btn:active {
+            transform: translateY(2px);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9rem;
+            color: #aaa;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer a {
+            color: #d9534f;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #c9302c;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #d9534f;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 767px) {
+            header {
+                font-size: 2.5rem;
+            }
+
+            .content {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .error-icon {
+                font-size: 3rem;
+            }
+
+            .error-message h2 {
+                font-size: 1.5rem;
+            }
+
+            .error-message p {
+                font-size: 0.9rem;
+            }
+
+            .mickey-logo img {
+                width: 120px;
+            }
+
+            .action-buttons {
+                gap: 20px;
+            }
+
+            .retry-btn, .home-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+
+            .social-icons {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Smaller mobile screens */
+        @media (max-width: 480px) {
+            header {
+                font-size: 2rem;
+            }
+
+            .content {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .error-icon {
+                font-size: 2.5rem;
+            }
+
+            .error-message h2 {
+                font-size: 1.2rem;
+            }
+
+            .error-message p {
+                font-size: 0.85rem;
+            }
+
+            .mickey-logo img {
+                width: 100px;
+            }
+
+            .retry-btn, .home-btn {
+                font-size: 0.9rem;
+                padding: 10px 18px;
+            }
+
+            footer {
+                font-size: 0.7rem;
+            }
+
+            .social-icons {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container" style="display: flex; align-items: center; justify-content: center; gap: 20px; padding: 10px;">
+            <img src="LOGO.png" alt="New Logo" class="logo-icon" style="width: 100px; height: 100px; border: 3px solid #f093fb; border-radius: 50%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+            <div style="text-align: left;">
+                <h1 style="font-family: 'Nosifer', cursive; font-size: 2rem; color: #f093fb; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); margin: 0;">
+                    Yummy <span style="color: #f5576c;">Express</span>
+                </h1>
+                <p style="font-size: 1.2rem; font-family: 'Poppins', sans-serif; color: #ffffff;">Your favorite meals, delivered fresh!</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="error-icon">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="error-message">
+            <h2>Order Cancelled</h2>
+            <p>We regret to inform you that your order has been cancelled. Please contact support if you have any questions.</p>
+        </div>
+        
+        <div class="mickey-logo">
+            <img src="https://i.giphy.com/rCxogJBzaeZuU.webp" alt="Sorry !!! Order Cancelled">
+        </div>
+
+        <div class="action-buttons">
+            <a href="(04) Cart.html" class="retry-btn">Try Again</a>
+            <a href="index.html" class="home-btn">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Yummy Express. All rights reserved. <br> <a href="(07) About Us.html">Privacy Policy</a> | <a href="(06) Terms and Conditions.html">Terms & Conditions</a></p>
+        
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/message/G3OECKFIDWUVP1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/yumm.yexpress?igsh=NTc4MTIwNjQ2YQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

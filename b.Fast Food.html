@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yummy Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+ <link rel="stylesheet" href="CSS/b.Fast Food.css" />
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">www.yummyexpress.com</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(02) Favourite menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(07) About Us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="(08) Help and Support.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.png" alt="New Logo" class="logo" />
+            <div class="brand-name">
+                <h1>
+                    Yummy <span>Express</span>
+                </h1>
+                <p>Your favorite meals, delivered fresh!</p>
+            </div>
+        </div>
+        <div class="header-overlay"></div>
+    </header>
+
+    <section class="dish-menu container my-5" style="color: #111; font-family: 'Arial', sans-serif;">
+<h2 class="text-center mb-4 special-vegetarian-dishes">Our Fast Food Dishes</h2>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons d-flex justify-content-center gap-3 mb-4 flex-wrap"></div>
+
+        <div class="d-flex flex-column gap-4">
+            <!-- Dish 1 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="non-veg"
+                style="background: #fff8f0;" data-half-price="8.99" data-full-price="12.99">
+                <img src="IMAGES/chicken chowmin.jpg" alt="Chicken Chowmin"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Chicken Chowmin</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">A flavorful and spicy chicken curry cooked with fresh spices.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $12.99</span>
+                        <span class="rating" aria-label="Rating: 4.5 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                            (4.5)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-1" value="half" aria-checked="false" />
+                            Half Plate
+                        </label>
+                        <label>
+                            <input type="radio" name="plate-size-1" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 2 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="7.50" data-full-price="10.50">
+                <img src="IMAGES/fried momos.jpg" alt="Dish 2"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Fried Momos</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Aromatic basmati rice cooked with fresh vegetables and spices.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $10.50</span>
+                        <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="far fa-star" style="color: #f0c040;"></i>
+                            (4.0)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-2" value="half" aria-checked="false" />
+                            Half Plate
+                        </label>
+                        <label>
+                            <input type="radio" name="plate-size-2" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 3 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="9.50" data-full-price="14.25">
+                <img src="IMAGES/Manchurian.jpg" alt="Dish 3"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Manchurian</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Traditional Italian pizza topped with fresh tomatoes and mozzarella.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $14.25</span>
+                        <span class="rating" aria-label="Rating: 4.7 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star-half-alt" style="color: #f0c040;"></i>
+                            (4.7)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-3" value="half" aria-checked="false" />
+                            Half Plate
+                        </label>
+                        <label>
+                            <input type="radio" name="plate-size-3" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 4 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="7.50" data-full-price="10.50">
+                <img src="IMAGES/Pakora.jpg" alt="Dish 2"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Pakora</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Aromatic basmati rice cooked with fresh vegetables and spices.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $10.50</span>
+                        <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="far fa-star" style="color: #f0c040;"></i>
+                            (4.0)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-2" value="half" aria-checked="false" />
+                            Half Plate
+                        </label>
+                        <label>
+                            <input type="radio" name="plate-size-2" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 5 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="7.50" data-full-price="10.50">
+                <img src="IMAGES/Burger.jpg" alt="Dish 2"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Burger</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Made with love and fresh bread and vegetables.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $10.50</span>
+                        <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="far fa-star" style="color: #f0c040;"></i>
+                            (4.0)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-2" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 6 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="7.50" data-full-price="10.50">
+                <img src="IMAGES/Samosa.jpg" alt="Dish 2"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Samosa</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Fresh and hot crispy Samosa.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $10.50</span>
+                        <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="far fa-star" style="color: #f0c040;"></i>
+                            (4.0)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-2" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+            <!-- Dish 6 -->
+            <div class="dish-item d-flex align-items-center gap-3 p-3 rounded shadow-sm" data-category="veg"
+                style="background: #fff8f0;" data-half-price="7.50" data-full-price="10.50">
+                <img src="IMAGES/Pasta.jpg" alt="Dish 2"
+                    style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+                <div class="dish-info flex-grow-1">
+                    <h5 style="font-weight: bold; color: #8B0000;">Pasta</h5>
+                    <p class="mb-1" style="font-size: 0.9rem; color: #555;">Aromatic basmati rice cooked with fresh vegetables and spices.</p>
+                    <div class="d-flex align-items-center gap-3" style="font-size: 0.9rem; color: #444;">
+                        <span class="price price-display" style="font-weight: 600;">Price: $10.50</span>
+                        <span class="rating" aria-label="Rating: 4.0 out of 5 stars">
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="fas fa-star" style="color: #f0c040;"></i>
+                            <i class="far fa-star" style="color: #f0c040;"></i>
+                            (4.0)
+                        </span>
+                    </div>
+                    <div class="plate-size-options d-flex gap-3 mt-2" role="radiogroup" aria-label="Select plate size">
+                        <label>
+                            <input type="radio" name="plate-size-2" value="half" aria-checked="false" />
+                            Half Plate
+                        </label>
+                        <label>
+                            <input type="radio" name="plate-size-2" value="full" aria-checked="true" checked />
+                            Full Plate
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger buy-now-btn"
+                    style="font-weight: 600; border-radius: 20px; padding: 6px 14px; box-shadow: 0 3px 8px rgba(139,0,0,0.5); transition: background-color 0.3s ease;">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links container">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><i class="fas fa-utensils"></i> <a href="(02) Favourite menu.html" style="text-decoration:none; color: inherit;">Menu</a></li>
+            <li><i class="fas fa-info-circle"></i> <a href="(07) About Us.html" style="text-decoration:none; color: inherit;">About Us</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="(08) Help and Support.html" style="text-decoration:none; color: inherit;">Contact Us</a></li>
+            <li><i class="fas fa-star"></i> <a href="#" style="text-decoration:none; color: inherit;">Reviews</a></li>
+            <li><i class="fas fa-phone"></i> <a href="#" style="text-decoration:none; color: inherit;">Support</a></li>
+        </ul>
+        <div class="social-media">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </section>
+
+    <style>
+        /* Quick Links Section */
+        .quick-links {
+            background-color: #fff8f0;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Georgia', serif;
+            color: #333;
+        }
+
+        .quick-links h3 {
+            color: #8B0000;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .quick-links ul li {
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links ul li i {
+            font-size: 1.3rem;
+            color: #8B0000;
+        }
+
+        .quick-links ul li:hover {
+            color: #f093fb;
+        }
+
+        /* Social Media Icons */
+        .social-media {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .social-media a {
+            margin: 0 12px;
+            color: #8B0000;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #f093fb;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Floating Cart Icon */
+        #floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ff6347;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1050;
+            font-size: 24px;
+            user-select: none;
+        }
+        #floating-cart .item-count {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #222;
+            color: #f5576c;
+            font-weight: bold;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 5px #f5576c;
+        }
+
+        /* Cart Dialog Box */
+        #cart-dialog {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 320px;
+            max-height: 400px;
+            background: white;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1060;
+            font-family: 'Arial', sans-serif;
+        }
+        #cart-dialog h4 {
+            margin-top: 0;
+            color: #ff6347;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        #cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        #cart-items li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+        }
+        #cart-items li img {
+            width: 40px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        #cart-items li .item-info {
+            flex-grow: 1;
+            font-size: 14px;
+            color: #8B0000;
+            font-weight: 600;
+        }
+        #cart-items li .item-price {
+            font-weight: 700;
+            color: #f5576c;
+            min-width: 50px;
+            text-align: right;
+        }
+        #cart-subtotal {
+            font-weight: bold;
+            font-size: 16px;
+            text-align: right;
+            margin-bottom: 15px;
+            color: #8B0000;
+        }
+        #cart-buy-now-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(45deg, #f5576c, #ff6347);
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 10px 0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.7);
+            transition: background 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+        }
+        #cart-buy-now-btn:hover {
+            background: linear-gradient(45deg, #ff6347, #f5576c);
+        }
+    </style>
+
+    <!-- Floating Cart Icon -->
+    <div id="floating-cart" aria-label="Shopping cart" role="button" tabindex="0">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="item-count" aria-live="polite" aria-atomic="true">0</div>
+    </div>
+
+    <!-- Cart Dialog Box -->
+    <div id="cart-dialog" aria-label="Shopping cart details" role="dialog" aria-modal="true" aria-hidden="true">
+        <h4>Your Cart</h4>
+        <ul id="cart-items"></ul>
+        <div id="cart-subtotal">Subtotal: $0.00</div>
+        <a href="final_order.html" id="cart-buy-now-btn" role="button">Buy Now</a>
+    </div>
+
+    <script>
+        (function() {
+            const floatingCart = document.getElementById('floating-cart');
+            const cartDialog = document.getElementById('cart-dialog');
+            const cartItemsList = document.getElementById('cart-items');
+            const itemCountElem = floatingCart.querySelector('.item-count');
+            const cartSubtotalElem = document.getElementById('cart-subtotal');
+            const buyNowBtn = document.getElementById('cart-buy-now-btn');
+
+            let cartItems = [];
+
+            function updateCartUI() {
+                // Update item count
+                itemCountElem.textContent = cartItems.length;
+
+                // Update cart items list
+                cartItemsList.innerHTML = '';
+                let subtotal = 0;
+                cartItems.forEach(item => {
+                    const li = document.createElement('li');
+
+                    const img = document.createElement('img');
+                    img.src = item.imgSrc;
+                    img.alt = item.name;
+
+                    const info = document.createElement('div');
+                    info.className = 'item-info';
+                    info.textContent = item.name + ' (' + item.size + ')';
+
+                    const price = document.createElement('div');
+                    price.className = 'item-price';
+                    price.textContent = '$' + item.price.toFixed(2);
+
+                    li.appendChild(img);
+                    li.appendChild(info);
+                    li.appendChild(price);
+
+                    cartItemsList.appendChild(li);
+
+                    subtotal += item.price;
+                });
+
+            // Update subtotal
+            cartSubtotalElem.textContent = 'Subtotal: $' + subtotal.toFixed(2);
+
+            // Show or hide cart dialog based on items
+            // Remove automatic show/hide on update
+        }
+
+        // Toggle cart dialog on floating cart click
+        floatingCart.addEventListener('click', () => {
+            if (cartDialog.style.display === 'block') {
+                cartDialog.style.display = 'none';
+                cartDialog.setAttribute('aria-hidden', 'true');
+            } else if (cartItems.length > 0) {
+                cartDialog.style.display = 'block';
+                cartDialog.setAttribute('aria-hidden', 'false');
+            }
+        });
+
+        // Add event listeners to all buy now buttons
+        const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+        buyNowButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const dishItem = btn.closest('.dish-item');
+                const dishName = dishItem.querySelector('h5').textContent.trim();
+                const dishImgSrc = dishItem.querySelector('img').src;
+                const plateSizeRadios = dishItem.querySelectorAll('input[type="radio"][name^="plate-size"]');
+                let selectedSize = 'full';
+                plateSizeRadios.forEach(radio => {
+                    if (radio.checked) {
+                        selectedSize = radio.value;
+                    }
+                });
+                const priceAttr = selectedSize === 'half' ? 'data-half-price' : 'data-full-price';
+                const price = parseFloat(dishItem.getAttribute(priceAttr)) || 0;
+
+                // Add item to cart
+                cartItems.push({
+                    name: dishName,
+                    size: selectedSize.charAt(0).toUpperCase() + selectedSize.slice(1) + ' Plate',
+                    price: price,
+                    imgSrc: dishImgSrc
+                });
+
+                updateCartUI();
+            });
+        });
+
+        // Add event listeners to plate size radio buttons to update price display
+        const plateSizeRadios = document.querySelectorAll('.plate-size-options input[type="radio"]');
+        plateSizeRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const dishItem = e.target.closest('.dish-item');
+                const selectedSize = e.target.value;
+                const priceSpan = dishItem.querySelector('.price-display');
+                const priceAttr = selectedSize === 'half' ? 'data-half-price' : 'data-full-price';
+                const price = parseFloat(dishItem.getAttribute(priceAttr)) || 0;
+                priceSpan.textContent = 'Price: $' + price.toFixed(2);
+            });
+        });
+
+        // Initialize cart UI
+        updateCartUI();
+
+        // Modify cart buy now button behavior
+        buyNowBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (cartItems.length > 0) {
+                // Redirect to Payment Gateway page
+                window.location.href = 'Payment Gateway.html';
+            } else {
+                alert('Please add some food items to your cart before proceeding to payment.');
+            }
+        });
+        })();
+    </script>
+</body>
+</html>

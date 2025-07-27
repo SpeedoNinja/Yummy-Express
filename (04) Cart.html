@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YUMMY EXPRESS - Your Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-red: #E74C3C;
+            --primary-orange: #F39C12;
+            --cream-bg: #FDF9F2;
+            --dark-text: #333;
+            --light-grey: #ECF0F1;
+            --border-color: #DDD;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cream-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+        }
+
+        /* Cart Page Layout */
+        .cart-page {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-top: 40px;
+        }
+
+        .cart-content {
+            display: flex;
+            flex-direction: column; /* Default for mobile */
+            gap: 30px;
+            flex-grow: 1;
+        }
+
+        .cart-items {
+            flex: 2; /* Takes more space on larger screens */
+        }
+
+        /* Cart Item Card */
+        .cart-item-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow);
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden; /* For animations */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cart-item-card.removing {
+            animation: fadeOutRight 0.5s forwards;
+        }
+
+        @keyframes fadeOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+                height: auto;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+                height: 0;
+                padding: 0;
+                margin: 0;
+                border: none;
+                overflow: hidden;
+            }
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .item-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--primary-red);
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .item-price.original {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.85em;
+            font-weight: 400;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-left: 20px;
+        }
+
+        .quantity-controls button {
+            background-color: var(--light-grey);
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: var(--dark-text);
+            transition: background-color 0.2s;
+        }
+
+        .quantity-controls button:hover:not(:disabled) {
+            background-color: var(--border-color);
+        }
+
+        .quantity-controls button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+            background-color: #f0f0f0;
+        }
+
+        .quantity-controls span {
+            padding: 8px 15px;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            font-weight: 500;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .item-total-price {
+            font-weight: 700;
+            margin-left: 20px;
+            min-width: 80px; /* Ensure price column aligns */
+            text-align: right;
+            color: var(--primary-red);
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #E74C3C;
+            font-size: 1.4em;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .remove-item-btn:hover {
+            transform: scale(1.1);
+            color: #C0392B;
+        }
+
+        /* Cart Summary Section */
+        .cart-summary {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow);
+            padding: 20px;
+            position: sticky;
+            top: 20px; /* Adjust as needed */
+            align-self: flex-start; /* Keeps it at the top */
+            flex: 1; /* Takes less space on larger screens */
+            min-width: 280px; /* Ensure it doesn't get too small */
+            max-height: fit-content; /* Helps with sticky behavior */
+        }
+
+        .cart-summary h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-red);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .summary-details p, .summary-total p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .summary-details p span, .summary-total p span {
+            font-weight: 600;
+        }
+
+        .summary-total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+
+        .summary-total #finalTotalPrice {
+            font-size: 1.8em;
+            color: var(--primary-red);
+            font-weight: 700;
+        }
+
+        .estimated-delivery {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: -5px;
+        }
+
+        .offer-discount-row {
+            color: green;
+            font-weight: 600;
+        }
+
+        /* Coupon Section */
+        .coupon-section {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+
+        .coupon-section input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.95em;
+            min-width: 150px; /* Ensure input is not too small */
+        }
+
+        .coupon-section button {
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap; /* Keep button text on one line */
+        }
+
+        .coupon-section button:hover {
+            background-color: #E67E22;
+        }
+
+        .coupon-message {
+            font-size: 0.9em;
+            margin-top: 5px;
+            text-align: right;
+            width: 100%; /* Make message span full width */
+        }
+
+        .coupon-message.success {
+            color: green;
+        }
+
+        .coupon-message.error {
+            color: var(--primary-red);
+        }
+
+        .applied-coupon-row {
+            font-weight: 600;
+            color: green;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e6ffe6; /* Light green background */
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .remove-coupon-btn {
+            background: none;
+            border: 1px solid green;
+            color: green;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            cursor: pointer;
+            margin-left: 10px;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        /* Proceed Button */
+        .proceed-button {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+            overflow: hidden; /* For icon animation */
+        }
+
+        .proceed-button:hover:not(:disabled) {
+            background-color: #C0392B;
+            transform: translateY(-2px);
+        }
+
+        .proceed-button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .proceed-button .animated-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .proceed-button.loading .animated-icon {
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .proceed-button.loading .animated-icon.truck {
+            animation: truckZoomOut 1s forwards; /* Truck zooms out and disappears */
+        }
+
+        @keyframes truckZoomOut {
+            0% { transform: scale(1) translateX(0); opacity: 1; }
+            50% { transform: scale(1.2) translateX(10px); opacity: 0.8; }
+            100% { transform: scale(0.5) translateX(50px); opacity: 0; } /* Move off-screen */
+        }
+        /* Make sure the base icon is visible when not animating */
+        .proceed-button .fas.fa-truck-fast {
+            display: inline-block;
+        }
+        .proceed-button.loading .fas.fa-truck-fast:not(.truck) {
+             /* Hide the original truck if a separate spinner is used for loading */
+             /* For simplicity, we are using the same icon to spin then zoom out */
+        }
+
+        /* Tooltip styles */
+        .tooltip-icon {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.8em;
+            color: #888;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-icon::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .tooltip-icon:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 105%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 10;
+        }
+
+        .tooltip-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Empty Cart Message */
+        .empty-cart-message {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #666;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow);
+            margin-top: 20px;
+        }
+
+        /* Suggested Add-ons */
+        .suggested-addons {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow);
+            width: 100%; /* Take full width below cart */
+        }
+
+        .suggested-addons h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-red);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .add-on-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjusted for more items */
+            gap: 20px;
+        }
+
+        .add-on-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--cream-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .add-on-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .add-on-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: block; /* Remove extra space below image */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .add-on-card .dish-name {
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+            height: 2.8em; /* Fixed height for name to prevent layout shifts */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .add-on-card .dish-price {
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .add-on-card button {
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: auto; /* Push button to bottom */
+            transition: background-color 0.2s;
+        }
+
+        .add-on-card button:hover {
+            background-color: #E67E22;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: var(--dark-text);
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* Toast Notifications */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Timer based offer */
+        .timer-offer {
+            background-color: #ffe0b2; /* Light orange background */
+            border: 1px solid var(--primary-orange);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--primary-red);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .timer-offer #offerTimer {
+            font-size: 1.1em;
+            color: var(--dark-text);
+        }
+
+        /* Dark Mode Toggle (placeholder) */
+        /* You'd typically have a button to toggle a class on the body */
+        body.dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .cart-item-card,
+        body.dark-mode .cart-summary,
+        body.dark-mode .suggested-addons,
+        body.dark-mode .empty-cart-message,
+        body.dark-mode .add-on-card {
+            background-color: #34495e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-color: #444;
+        }
+
+        body.dark-mode header {
+            background-color: #c0392b;
+        }
+
+        body.dark-mode h2,
+        body.dark-mode .cart-summary h3,
+        body.dark-mode .suggested-addons h3,
+        body.dark-mode .summary-total #finalTotalPrice,
+        body.dark-mode .item-price,
+        body.dark-mode .timer-offer {
+            color: #e74c3c;
+        }
+        body.dark-mode .timer-offer #offerTimer,
+        body.dark-mode .estimated-delivery,
+        body.dark-mode .item-description,
+        body.dark-mode .item-price.original,
+        body.dark-mode .tooltip-icon {
+            color: #bbb;
+        }
+
+        body.dark-mode .quantity-controls button {
+            background-color: #555;
+            color: #ecf0f1;
+            border-color: #666;
+        }
+        body.dark-mode .quantity-controls span {
+            border-color: #666;
+        }
+
+        body.dark-mode .coupon-section input {
+            background-color: #444;
+            color: #ecf0f1;
+            border-color: #555;
+        }
+
+        body.dark-mode .coupon-section button {
+            background-color: #f39c12;
+        }
+
+        body.dark-mode .coupon-section button:hover {
+            background-color: #e67e22;
+        }
+
+        body.dark-mode .applied-coupon-row {
+            background-color: #27ae6033; /* Lighter green with transparency */
+            border-color: #27ae60;
+        }
+        body.dark-mode .remove-coupon-btn {
+            border-color: #27ae60;
+            color: #27ae60;
+        }
+
+        body.dark-mode footer {
+            background-color: #1a2c38;
+        }
+
+        body.dark-mode .proceed-button {
+            background-color: #e74c3c; /* Keep it prominent */
+        }
+        body.dark-mode .proceed-button:hover:not(:disabled) {
+             background-color: #c0392b;
+        }
+
+
+        /* Responsive CSS */
+        @media (min-width: 768px) {
+            .cart-content {
+                flex-direction: row; /* Desktop layout */
+            }
+            .cart-summary {
+                flex: 1;
+                max-width: 350px; /* Limit summary width on desktop */
+            }
+            .cart-items {
+                flex: 2;
+            }
+            .add-on-items {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 767px) {
+            .cart-item-card {
+                flex-wrap: wrap;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .item-image {
+                margin: 0 auto 10px auto;
+            }
+
+            .item-details {
+                text-align: center;
+                width: 100%;
+                margin-bottom: 10px;
+                align-items: center; /* Center details on small screens */
+            }
+
+            .quantity-controls {
+                margin: 10px auto;
+                order: 3; /* Move to third position */
+                width: fit-content;
+            }
+
+            .item-total-price {
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+                order: 4; /* Move to fourth position */
+            }
+
+            .remove-item-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                margin: 0;
+                font-size: 1.2em; /* Smaller trash icon for mobile */
+            }
+
+            .coupon-section {
+                flex-direction: column;
+            }
+            .coupon-section button {
+                width: 100%;
+            }
+            .coupon-message {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>YUMMY EXPRESS</h1>
+            <button id="darkModeToggle" style="background: none; border: none; color: white; font-size: 1.2em; cursor: pointer; position: absolute; right: 20px; top: 15px;">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container cart-page">
+        <h2>Your Cart</h2>
+        <div class="cart-content">
+            <section class="cart-items" id="cartItemsContainer">
+                <div class="empty-cart-message" style="display: none;">
+                    Your cart is empty. Start adding some delicious food!
+                    <br><br>
+                    <button onclick="location.reload()" style="background-color: var(--primary-orange); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Refresh Cart</button>
+                </div>
+            </section>
+
+            <aside class="cart-summary" id="cartSummary">
+                <h3>Order Summary</h3>
+                <div class="summary-details">
+                    <p>Subtotal: <span id="subtotalPrice">₹0.00</span></p>
+                    <p>Delivery Charges: <span id="deliveryCharges">₹0.00</span> <span class="tooltip-icon" data-tooltip="Delivery charges may vary based on location and order value. Enjoy free delivery above ₹499!">ℹ️</span></p>
+                    <p class="offer-discount-row" style="display: none;">Offer Discount: <span id="offerDiscount">- ₹0.00</span></p>
+                    <div class="coupon-section">
+                        <input type="text" id="couponInput" placeholder="Enter coupon code">
+                        <button id="applyCouponBtn">Apply</button>
+                        <p class="coupon-message" id="couponMessage"></p>
+                    </div>
+                    <p class="applied-coupon-row" style="display: none;">Coupon Applied: <span id="appliedCouponCode"></span> <button id="removeCouponBtn" class="remove-coupon-btn">X</button></p>
+                    <div class="timer-offer" id="timerOffer" style="display: none;">
+                        <p>Special Offer ends in: <span id="offerTimer"></span></p>
+                    </div>
+                </div>
+                <div class="summary-total">
+                    <p>Total: <span id="finalTotalPrice">₹0.00</span></p>
+                    <p class="estimated-delivery">Estimated Delivery: <span id="estimatedDeliveryTime">30-45 mins</span></p>
+                </div>
+                <button id="proceedToBuyBtn" class="proceed-button">
+                    Proceed to Buy <i class="fas fa-truck-fast animated-icon"></i>
+                </button>
+            </aside>
+        </div>
+
+        <section class="suggested-addons">
+            <h3>You might also like...</h3>
+            <div class="add-on-items" id="suggestedAddonsContainer">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 YUMMY EXPRESS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toastNotification" class="toast-notification"></div>
+
+    <script>
+        // Mock Data
+        const cartItemsData = [
+            {
+                id: 'dish1',
+                name: 'Classic Margherita Pizza',
+                description: 'Tomato, mozzarella, fresh basil.',
+                image: 'https://via.placeholder.com/80/FF6347/FFFFFF?text=Pizza', // Placeholder
+                unitPrice: 350,
+                quantity: 1,
+                onOffer: true,
+                offerPrice: 300
+            },
+            {
+                id: 'dish2',
+                name: 'Spicy Chicken Burger',
+                description: 'Grilled chicken, jalapenos, special sauce.',
+                image: 'https://via.placeholder.com/80/FFA500/FFFFFF?text=Burger', // Placeholder
+                unitPrice: 280,
+                quantity: 2,
+                onOffer: false
+            },
+            {
+                id: 'dish3',
+                name: 'Vegetable Biryani',
+                description: 'Aromatic basmati rice cooked with mixed vegetables.',
+                image: 'https://via.placeholder.com/80/7CFC00/FFFFFF?text=Biryani', // Placeholder
+                unitPrice: 220,
+                quantity: 1,
+                onOffer: true,
+                offerPrice: 200
+            }
+        ];
+
+        const suggestedAddonsData = [
+            {
+                id: 'addon1',
+                name: 'Coke (300ml)',
+                image: 'https://via.placeholder.com/100/F0F8FF/000000?text=Coke',
+                price: 60
+            },
+            {
+                id: 'addon2',
+                name: 'French Fries',
+                image: 'https://via.placeholder.com/100/FFD700/000000?text=Fries',
+                price: 120
+            },
+            {
+                id: 'addon3',
+                name: 'Chocolate Brownie',
+                image: 'https://via.placeholder.com/100/D2B48C/000000?text=Brownie',
+                price: 150
+            },
+            {
+                id: 'addon4',
+                name: 'Garlic Bread',
+                image: 'https://via.placeholder.com/100/A0522D/FFFFFF?text=Bread',
+                price: 90
+            }
+        ];
+
+        const coupons = {
+            'YUMMY10': {
+                type: 'percentage',
+                value: 10, // 10% off
+                minSubtotal: 200
+            },
+            'FREEDELIVERY': {
+                type: 'delivery',
+                value: 0, // Makes delivery free
+                minSubtotal: 400
+            },
+            'FLAT50': {
+                type: 'flat',
+                value: 50, // ₹50 off
+                minSubtotal: 300
+            }
+        };
+
+        const deliveryConfig = {
+            baseCharge: 40,
+            freeDeliveryThreshold: 499 // Free delivery above this subtotal
+        };
+
+        const offerConfig = {
+            active: true,
+            discountPercentage: 10,
+            durationMinutes: 5, // 5 minutes for demonstration
+            // This is a site-wide offer, not per-dish, but can be adapted.
+            // For per-dish offers, 'onOffer' and 'offerPrice' in cartItemsData are used.
+        };
+
+        // Main Script Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const subtotalPriceSpan = document.getElementById('subtotalPrice');
+            const deliveryChargesSpan = document.getElementById('deliveryCharges');
+            const offerDiscountRow = document.querySelector('.offer-discount-row');
+            const offerDiscountSpan = document.getElementById('offerDiscount');
+            const finalTotalPriceSpan = document.getElementById('finalTotalPrice');
+            const couponInput = document.getElementById('couponInput');
+            const applyCouponBtn = document.getElementById('applyCouponBtn');
+            const couponMessage = document.getElementById('couponMessage');
+            const appliedCouponRow = document.querySelector('.applied-coupon-row');
+            const appliedCouponCodeSpan = document.getElementById('appliedCouponCode');
+            const removeCouponBtn = document.getElementById('removeCouponBtn');
+            const proceedToBuyBtn = document.getElementById('proceedToBuyBtn');
+            const emptyCartMessage = document.querySelector('.empty-cart-message');
+            const suggestedAddonsContainer = document.getElementById('suggestedAddonsContainer');
+            const toastNotification = document.getElementById('toastNotification');
+            const timerOfferSection = document.getElementById('timerOffer');
+            const offerTimerSpan = document.getElementById('offerTimer');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+
+            let cart = JSON.parse(localStorage.getItem('yummyExpressCart')) || cartItemsData;
+            let appliedCoupon = JSON.parse(localStorage.getItem('yummyExpressAppliedCoupon'));
+            let siteWideOfferTimer = null;
+            let siteWideOfferRemainingTime = 0;
+
+            // --- Initial Render Functions ---
+
+            function renderCartItems() {
+                cartItemsContainer.innerHTML = '';
+                if (cart.length === 0) {
+                    emptyCartMessage.style.display = 'block';
+                    cartItemsContainer.style.display = 'none';
+                    document.getElementById('cartSummary').style.display = 'none'; // Hide summary if cart is empty
+                    document.querySelector('.suggested-addons').style.display = 'none'; // Hide suggestions if cart is empty
+                    return;
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cartItemsContainer.style.display = 'block';
+                    document.getElementById('cartSummary').style.display = 'block';
+                    document.querySelector('.suggested-addons').style.display = 'block';
+                }
+
+                cart.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.classList.add('cart-item-card');
+                    itemCard.dataset.id = item.id;
+
+                    const originalPriceDisplay = item.onOffer ? `<span class="item-price original">₹${item.unitPrice.toFixed(2)}</span>` : '';
+                    const currentPrice = item.onOffer ? item.offerPrice : item.unitPrice;
+
+                    itemCard.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="item-image">
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                            <div class="item-price">₹${currentPrice.toFixed(2)} ${originalPriceDisplay}</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" ${item.quantity === 1 ? 'disabled' : ''}>-</button>
+                            <span class="item-quantity">${item.quantity}</span>
+                            <button class="increase-quantity">+</button>
+                        </div>
+                        <div class="item-total-price">₹${(currentPrice * item.quantity).toFixed(2)}</div>
+                        <button class="remove-item-btn" aria-label="Remove ${item.name}">🗑️</button>
+                    `;
+                    cartItemsContainer.appendChild(itemCard);
+                });
+                updateCartSummary();
+                attachEventListeners(); // Re-attach event listeners after rendering
+            }
+
+            function renderSuggestedAddons() {
+                suggestedAddonsContainer.innerHTML = '';
+                suggestedAddonsData.forEach(addon => {
+                    const addonCard = document.createElement('div');
+                    addonCard.classList.add('add-on-card');
+                    addonCard.innerHTML = `
+                        <img src="${addon.image}" alt="${addon.name}">
+                        <div class="dish-name">${addon.name}</div>
+                        <div class="dish-price">₹${addon.price.toFixed(2)}</div>
+                        <button class="add-to-cart-addon" data-id="${addon.id}" data-name="${addon.name}" data-price="${addon.price}" data-image="${addon.image}">Add</button>
+                    `;
+                    suggestedAddonsContainer.appendChild(addonCard);
+                });
+                document.querySelectorAll('.add-to-cart-addon').forEach(button => {
+                    button.addEventListener('click', handleAddAddonToCart);
+                });
+            }
+
+            // --- Cart Calculation & Update Functions ---
+
+            function calculateCartTotals() {
+                let subtotal = 0;
+                let perDishOfferDiscountAmount = 0; // For per-dish offers
+
+                cart.forEach(item => {
+                    const currentPrice = item.onOffer ? item.offerPrice : item.unitPrice;
+                    subtotal += currentPrice * item.quantity;
+                    if (item.onOffer) {
+                        perDishOfferDiscountAmount += (item.unitPrice - item.offerPrice) * item.quantity;
+                    }
+                });
+
+                let deliveryCharges = deliveryConfig.baseCharge;
+                if (subtotal >= deliveryConfig.freeDeliveryThreshold) {
+                    deliveryCharges = 0;
+                }
+
+                let finalTotal = subtotal + deliveryCharges;
+                let couponDiscount = 0;
+                let isDeliveryFreeByCoupon = false;
+
+                if (appliedCoupon) {
+                    const couponDetails = coupons[appliedCoupon.code]; // Re-fetch details to ensure validity
+
+                    if (!couponDetails || subtotal < couponDetails.minSubtotal) {
+                        // Invalidate coupon if conditions are no longer met
+                        appliedCoupon = null;
+                        localStorage.removeItem('yummyExpressAppliedCoupon');
+                        showToast(`Applied coupon "${appliedCouponCodeSpan.textContent}" is no longer valid or minimum subtotal not met.`, 'error');
+                        couponMessage.textContent = ''; // Clear previous message
+                        updateCartSummary(); // Recalculate with no coupon
+                        return; // Exit to prevent further calculation with invalid coupon
+                    }
+
+                    if (couponDetails.type === 'percentage') {
+                        couponDiscount = (subtotal * couponDetails.value) / 100;
+                    } else if (couponDetails.type === 'flat') {
+                        couponDiscount = couponDetails.value;
+                    } else if (couponDetails.type === 'delivery') {
+                        deliveryCharges = 0; // Coupon overrides delivery logic
+                        isDeliveryFreeByCoupon = true;
+                    }
+                    finalTotal -= couponDiscount;
+                }
+
+                // Recalculate finalTotal with potentially changed deliveryCharges (from coupon)
+                if (!isDeliveryFreeByCoupon) { // Only re-apply if not made free by coupon
+                     deliveryCharges = deliveryConfig.baseCharge;
+                     if (subtotal >= deliveryConfig.freeDeliveryThreshold) {
+                         deliveryCharges = 0;
+                     }
+                }
+                finalTotal = subtotal + deliveryCharges - couponDiscount;
+
+
+                // Apply site-wide offer if active and timer is running
+                let siteWideDiscountAmount = 0;
+                if (offerConfig.active && siteWideOfferRemainingTime > 0) {
+                    siteWideDiscountAmount = (finalTotal * offerConfig.discountPercentage) / 100;
+                    finalTotal -= siteWideDiscountAmount;
+                }
+
+                let totalOfferDiscount = perDishOfferDiscountAmount + siteWideDiscountAmount + couponDiscount; // Sum all discounts for display
+
+                return {
+                    subtotal,
+                    deliveryCharges,
+                    finalTotal: Math.max(0, finalTotal), // Ensure total is not negative
+                    offerDiscountAmount: totalOfferDiscount,
+                    couponDiscount // Separate for internal logic if needed
+                };
+            }
+
+            function updateCartSummary() {
+                const { subtotal, deliveryCharges, finalTotal, offerDiscountAmount } = calculateCartTotals();
+
+                subtotalPriceSpan.textContent = `₹${subtotal.toFixed(2)}`;
+                deliveryChargesSpan.textContent = `₹${deliveryCharges.toFixed(2)}`;
+
+                if (offerDiscountAmount > 0) {
+                    offerDiscountRow.style.display = 'flex';
+                    offerDiscountSpan.textContent = `- ₹${offerDiscountAmount.toFixed(2)}`;
+                } else {
+                    offerDiscountRow.style.display = 'none';
+                }
+
+                finalTotalPriceSpan.textContent = `₹${finalTotal.toFixed(2)}`;
+
+                // Update coupon display
+                if (appliedCoupon) {
+                    appliedCouponRow.style.display = 'flex';
+                    appliedCouponCodeSpan.textContent = appliedCoupon.code;
+                    couponInput.value = appliedCoupon.code; // Keep input filled
+                    couponMessage.textContent = ''; // Clear coupon message below input
+                } else {
+                    appliedCouponRow.style.display = 'none';
+                    couponInput.value = ''; // Clear input
+                }
+
+                saveCartState();
+            }
+
+            function saveCartState() {
+                localStorage.setItem('yummyExpressCart', JSON.stringify(cart));
+                localStorage.setItem('yummyExpressAppliedCoupon', JSON.stringify(appliedCoupon));
+            }
+
+            // --- Event Handlers ---
+
+            function attachEventListeners() {
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.onclick = handleQuantityChange;
+                });
+
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.onclick = handleQuantityChange;
+                });
+
+                document.querySelectorAll('.remove-item-btn').forEach(button => {
+                    button.onclick = handleRemoveItem;
+                });
+            }
+
+            function handleQuantityChange(event) {
+                const button = event.target;
+                const itemCard = button.closest('.cart-item-card');
+                const itemId = itemCard.dataset.id;
+                const quantitySpan = itemCard.querySelector('.item-quantity');
+                const currentQuantity = parseInt(quantitySpan.textContent);
+
+                let newQuantity = currentQuantity;
+                if (button.classList.contains('increase-quantity')) {
+                    newQuantity++;
+                } else if (button.classList.contains('decrease-quantity')) {
+                    if (currentQuantity > 1) {
+                        newQuantity--;
+                    } else {
+                        return; // Do nothing if quantity is already 1
+                    }
+                }
+
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity = newQuantity;
+                    quantitySpan.textContent = newQuantity;
+                    itemCard.querySelector('.decrease-quantity').disabled = newQuantity === 1;
+
+                    const currentPrice = cart[itemIndex].onOffer ? cart[itemIndex].offerPrice : cart[itemIndex].unitPrice;
+                    itemCard.querySelector('.item-total-price').textContent = `₹${(currentPrice * newQuantity).toFixed(2)}`;
+                    updateCartSummary();
+                }
+            }
+
+            function handleRemoveItem(event) {
+                const button = event.target;
+                const itemCard = button.closest('.cart-item-card');
+                const itemId = itemCard.dataset.id;
+                const itemName = itemCard.querySelector('.item-name').textContent;
+
+                if (confirm(`Are you sure you want to remove "${itemName}" from your cart?`)) {
+                    itemCard.classList.add('removing');
+                    itemCard.addEventListener('animationend', () => {
+                        cart = cart.filter(item => item.id !== itemId);
+                        renderCartItems(); // Re-render to remove the item and update summary
+                        showToast(`"${itemName}" removed from cart.`, 'success');
+                    }, { once: true }); // Ensure event listener is removed after first use
+                }
+            }
+
+            function handleApplyCoupon() {
+                const code = couponInput.value.trim().toUpperCase();
+                if (!code) {
+                    showToast('Please enter a coupon code.', 'error');
+                    return;
+                }
+
+                const couponDetails = coupons[code];
+
+                if (couponDetails) {
+                    const { subtotal } = calculateCartTotals(); // Get current subtotal
+                    if (subtotal >= couponDetails.minSubtotal) {
+                        appliedCoupon = { ...couponDetails, code: code };
+                        couponMessage.textContent = `Coupon "${code}" applied!`;
+                        couponMessage.classList.remove('error');
+                        couponMessage.classList.add('success');
+                        showToast(`Coupon "${code}" applied successfully!`, 'success');
+                    } else {
+                        appliedCoupon = null; // Ensure no invalid coupon is applied
+                        couponMessage.textContent = `Minimum subtotal of ₹${couponDetails.minSubtotal} required for this coupon.`;
+                        couponMessage.classList.remove('success');
+                        couponMessage.classList.add('error');
+                        showToast(`Minimum subtotal of ₹${couponDetails.minSubtotal} required for this coupon.`, 'error');
+                    }
+                } else {
+                    appliedCoupon = null;
+                    couponMessage.textContent = 'Invalid coupon code.';
+                    couponMessage.classList.remove('success');
+                    couponMessage.classList.add('error');
+                    showToast('Invalid coupon code.', 'error');
+                }
+                updateCartSummary();
+            }
+
+            function handleRemoveCoupon() {
+                appliedCoupon = null;
+                couponInput.value = '';
+                couponMessage.textContent = ''; // Clear temporary message
+                showToast('Coupon removed.', 'info');
+                updateCartSummary();
+            }
+
+            function handleProceedToBuy() {
+                if (cart.length === 0) {
+                    showToast("Your cart is empty! Add items to proceed.", "error");
+                    return;
+                }
+                
+                proceedToBuyBtn.disabled = true;
+                proceedToBuyBtn.classList.add('loading');
+                // Temporarily change icon for loading
+                const originalIconClass = proceedToBuyBtn.querySelector('.animated-icon').className;
+                proceedToBuyBtn.querySelector('.animated-icon').className = 'fas fa-spinner fa-spin animated-icon';
+
+                // Simulate processing time
+                setTimeout(() => {
+                    showToast('Proceeding to checkout...', 'success');
+                    console.log('Proceeding to checkout with cart:', cart, 'and final total:', finalTotalPriceSpan.textContent);
+
+                    // Revert icon and disable loading
+                    proceedToBuyBtn.querySelector('.animated-icon').className = originalIconClass;
+                    proceedToBuyBtn.classList.remove('loading');
+                    proceedToBuyBtn.disabled = false;
+
+                    // Simulate transition to checkout page or popup
+                    // For a real app, this would be a redirect or modal open.
+                    // For this integrated demo, we'll just show an alert.
+                    alert("Simulating Checkout! Thank you for your order with YUMMY EXPRESS.");
+                    // window.location.href = 'checkout.html'; // Example redirect
+                    // Reset cart after successful checkout (optional, based on flow)
+                    cart = [];
+                    appliedCoupon = null;
+                    saveCartState();
+                    renderCartItems(); // Re-render to show empty cart
+                }, 2000); // 2 seconds delay
+            }
+
+            function handleAddAddonToCart(event) {
+                const button = event.target;
+                const id = button.dataset.id;
+                const name = button.dataset.name;
+                const price = parseFloat(button.dataset.price);
+                const image = button.dataset.image;
+
+                const existingItemIndex = cart.findIndex(item => item.id === id);
+
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity++;
+                    showToast(`Added another "${name}" to cart.`, 'info');
+                } else {
+                    cart.push({
+                        id: id,
+                        name: name,
+                        image: image,
+                        unitPrice: price,
+                        quantity: 1,
+                        onOffer: false // Addons typically not on offer
+                    });
+                    showToast(`"${name}" added to cart!`, 'success');
+                }
+                renderCartItems();
+            }
+
+            function showToast(message, type = 'info') {
+                toastNotification.textContent = message;
+                toastNotification.className = 'toast-notification show'; // Reset classes and add 'show'
+                if (type === 'success') {
+                    toastNotification.style.backgroundColor = 'rgba(46, 204, 113, 0.9)'; // Green
+                } else if (type === 'error') {
+                    toastNotification.style.backgroundColor = 'rgba(231, 76, 60, 0.9)'; // Red
+                } else {
+                    toastNotification.style.backgroundColor = 'rgba(52, 152, 219, 0.9)'; // Blue (info)
+                }
+
+                setTimeout(() => {
+                    toastNotification.classList.remove('show');
+                }, 3000); // Hide after 3 seconds
+            }
+
+            function startSiteWideOfferTimer() {
+                if (!offerConfig.active) {
+                    timerOfferSection.style.display = 'none';
+                    return;
+                }
+
+                // Try to load remaining time from localStorage
+                const storedEndTime = localStorage.getItem('yummyExpressSiteWideOfferEndTime');
+                if (storedEndTime) {
+                    const endTime = new Date(parseInt(storedEndTime));
+                    siteWideOfferRemainingTime = Math.max(0, endTime.getTime() - Date.now());
+                } else {
+                    siteWideOfferRemainingTime = offerConfig.durationMinutes * 60 * 1000;
+                    const endTime = Date.now() + siteWideOfferRemainingTime;
+                    localStorage.setItem('yummyExpressSiteWideOfferEndTime', endTime.toString());
+                }
+
+                if (siteWideOfferRemainingTime <= 0) {
+                    timerOfferSection.style.display = 'none';
+                    offerConfig.active = false; // Deactivate offer
+                    localStorage.removeItem('yummyExpressSiteWideOfferEndTime');
+                    updateCartSummary();
+                    return;
+                }
+
+                timerOfferSection.style.display = 'block';
+
+                if (siteWideOfferTimer) clearInterval(siteWideOfferTimer); // Clear existing timer
+
+                siteWideOfferTimer = setInterval(() => {
+                    siteWideOfferRemainingTime -= 1000; // Decrement by 1 second
+
+                    if (siteWideOfferRemainingTime <= 0) {
+                        clearInterval(siteWideOfferTimer);
+                        timerOfferSection.style.display = 'none';
+                        offerTimerSpan.textContent = '00:00';
+                        offerConfig.active = false; // Offer ended
+                        localStorage.removeItem('yummyExpressSiteWideOfferEndTime');
+                        updateCartSummary();
+                        showToast('Limited-time offer has ended!', 'info');
+                        return;
+                    }
+
+                    const minutes = Math.floor(siteWideOfferRemainingTime / (1000 * 60));
+                    const seconds = Math.floor((siteWideOfferRemainingTime % (1000 * 60)) / 1000);
+
+                    offerTimerSpan.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    updateCartSummary(); // Update summary every second to reflect discount status
+                }, 1000);
+            }
+
+            // Dark Mode Toggle Logic
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkModeEnabled', isDarkMode);
+                darkModeToggle.querySelector('i').className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+            }
+
+            // Apply dark mode preference on load
+            if (localStorage.getItem('darkModeEnabled') === 'true') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.querySelector('i').className = 'fas fa-sun';
+            } else {
+                 darkModeToggle.querySelector('i').className = 'fas fa-moon';
+            }
+
+            // --- Initialize ---
+
+            renderCartItems();
+            renderSuggestedAddons();
+            startSiteWideOfferTimer(); // Start the offer timer on page load
+
+            applyCouponBtn.addEventListener('click', handleApplyCoupon);
+            removeCouponBtn.addEventListener('click', handleRemoveCoupon);
+            proceedToBuyBtn.addEventListener('click', handleProceedToBuy);
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        });
+    </script>
+</body>
+</html>

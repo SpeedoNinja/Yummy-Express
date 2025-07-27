@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment - Yummy Express</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styling for a classic, professional look */
+        body {
+            font-family: 'Lato', sans-serif; /* Modern sans-serif for readability */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0e5ec, #f5f7fa); /* Soft, subtle gradient */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Use min-height for better content flow */
+            text-align: center;
+            overflow-x: hidden;
+            flex-direction: column;
+        }
+
+        header {
+            position: relative; /* Changed to relative for better flow with central content */
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif; /* Elegant serif font for header */
+            font-size: 2.2rem;
+            color: #2c3e50; /* Deep, professional blue-grey */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* Logo container styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .logo-icon {
+            width: 80px; /* Slightly smaller for elegance */
+            height: 80px;
+            border: 2px solid #a8a8a8; /* Softer border */
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* More subtle shadow */
+        }
+
+        /* Main content box styling */
+        .content {
+            background: #fff;
+            border-radius: 12px; /* Slightly less rounded */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Deeper, softer shadow */
+            width: 90%;
+            max-width: 580px; /* Wider for more space */
+            padding: 35px 30px;
+            animation: fadeInScale 0.8s ease-out forwards; /* New animation */
+            position: relative;
+            margin-bottom: 40px; /* Space before footer */
+        }
+
+        @keyframes fadeInScale {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #34495e; /* Darker, more serious blue-grey */
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* More space between buttons */
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .payment-btn {
+            background: #f0f4f7; /* Light background for buttons */
+            border: 1px solid #dcdfe6; /* Subtle border */
+            padding: 14px 28px;
+            border-radius: 8px; /* Slightly less rounded */
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Very subtle button shadow */
+        }
+
+        .payment-btn:hover {
+            background: #e6edf2;
+            border-color: #c9d2da;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-btn.active {
+            background: #4a90e2; /* Professional blue for active state */
+            color: white;
+            border-color: #4a90e2;
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4); /* Stronger, colored shadow for active */
+            transform: translateY(-1px); /* Slight lift */
+        }
+
+        .payment-btn i {
+            color: inherit; /* Inherit color from parent button */
+        }
+
+        .payment-details {
+            margin-top: 20px;
+            border: 1px dashed #d1d9e6; /* Softer dashed border */
+            padding: 25px;
+            border-radius: 10px;
+            background: #fdfefe; /* Very light background */
+            display: none;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Inner shadow for depth */
+        }
+
+        .payment-details.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out; /* Smooth fade-in for details */
+        }
+
+        .upi-id, .qr-code-img {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #444;
+            word-break: break-all;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #eef1f6;
+            border-radius: 6px;
+            border: 1px solid #dde3ed;
+            display: inline-block; /* To apply padding/border correctly */
+            cursor: pointer; /* Indicate it's clickable for copy */
+        }
+        .upi-id:hover {
+            background: #e0e5ed;
+        }
+
+        .qr-code-img img {
+            max-width: 280px; /* Increased size for QR */
+            height: auto;
+            border: 1px solid #e0e5ed;
+            padding: 8px;
+            background-color: #fff;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #e74c3c; /* Professional red for urgency */
+            margin-top: 30px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.03); opacity: 0.9; }
+        }
+
+        .order-notice {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #666;
+            background-color: #f7f9fc; /* Very light, professional background */
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e5ec;
+            line-height: 1.5;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.03);
+        }
+
+        /* New animation for the reassurance message */
+        .reassurance-message {
+            margin-top: 25px;
+            font-size: 1rem;
+            color: #4CAF50; /* A reassuring green */
+            font-weight: 600;
+            overflow: hidden; /* Hide content outside initial bounds */
+            max-height: 0; /* Start hidden */
+            opacity: 0; /* Start transparent */
+            transition: max-height 0.8s ease-out, opacity 0.8s ease-out; /* Smooth transition */
+            border-left: 5px solid #4CAF50; /* Green accent border */
+            padding: 10px 15px;
+            background-color: #e6ffe6; /* Light green background */
+            border-radius: 5px;
+        }
+
+        .reassurance-message.show {
+            max-height: 100px; /* Animate to show content */
+            opacity: 1; /* Fade in */
+        }
+
+
+        /* Footer styling */
+        footer {
+            margin-top: auto; /* Push footer to bottom if content is short */
+            padding: 20px 0;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+            border-top: 1px solid #e0e5ec;
+        }
+
+        footer a {
+            color: #4a90e2; /* Consistent blue for links */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #337ab7;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+            font-size: 1.4rem;
+        }
+
+        .social-icons a {
+            margin: 0 12px;
+            color: #777; /* Softer color for icons */
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4a90e2; /* Active color for social icons */
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.8rem;
+                margin-top: 30px;
+            }
+
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-container h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .logo-container p {
+                font-size: 1rem !important;
+            }
+
+            .content {
+                padding: 25px 15px;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .payment-btn {
+                font-size: 0.95rem;
+                padding: 12px 20px;
+                gap: 8px;
+            }
+
+            .upi-id, .qr-code-img {
+                font-size: 1.1rem;
+                padding: 8px 12px;
+            }
+
+            .qr-code-img img {
+                max-width: 220px;
+            }
+
+            .timer {
+                font-size: 1.8rem;
+            }
+
+            .order-notice {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+            }
+
+            .reassurance-message {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            footer {
+                font-size: 0.75rem;
+                padding: 15px 0;
+            }
+
+            .social-icons {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            header {
+                font-size: 1.5rem;
+                margin-top: 20px;
+            }
+            .logo-icon {
+                width: 55px;
+                height: 55px;
+            }
+            .logo-container h1 {
+                font-size: 1.3rem !important;
+            }
+            .logo-container p {
+                font-size: 0.85rem !important;
+            }
+            .content {
+                padding: 20px 10px;
+            }
+            .payment-btn {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+                margin: 5px;
+            }
+            .timer {
+                font-size: 1.5rem;
+            }
+            .order-notice {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.png" alt="Yummy Express Logo" class="logo-icon">
+            <div>
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 1.9rem; color: #2c3e50; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); margin: 0;">
+                    Yummy <span style="color: #4a90e2;">Express</span>
+                </h1>
+                <p style="font-size: 1.1rem; font-family: 'Lato', sans-serif; color: #666;">Secure & Convenient Payments</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Select Your Payment Method</h2>
+
+        <div class="payment-options">
+            <button class="payment-btn active" id="upiBtn">
+                <i class="fas fa-mobile-alt"></i> Pay with UPI
+            </button>
+            <button class="payment-btn" id="qrCodeBtn">
+                <i class="fas fa-qrcode"></i> Scan QR Code
+            </button>
+            <button class="payment-btn" id="codBtn">
+                <i class="fas fa-truck"></i> Cash On Delivery
+            </button>
+        </div>
+
+        <div class="payment-details active" id="upiDetails">
+            <p style="font-size: 1rem; color: #555; margin-bottom: 10px;">Send payment to the following UPI ID:</p>
+            <div class="upi-id">7079856265@ptsbi</div>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">(Tap to copy UPI ID)</p>
+        </div>
+
+        <div class="payment-details" id="qrCodeDetails">
+            <p style="font-size: 1rem; color: #555; margin-bottom: 10px;">Scan the QR code with any UPI app:</p>
+            <div class="qr-code-img">
+                <img src="IMAGES/QR.png" alt="Company QR Code for Payment">
+            </div>
+        </div>
+
+        <div class="payment-details" id="codDetails" style="display:none;">
+            <p style="font-size: 1rem; color: #555; margin-bottom: 10px;">You have selected Cash On Delivery. Please confirm your order.</p>
+            <button class="payment-btn" id="completePurchaseBtn" style="margin-top: 20px; background-color: #27ae60; color: white; border: none; padding: 12px 25px; font-size: 1.1rem; border-radius: 8px; cursor: pointer;">
+                Complete Purchase
+            </button>
+        </div>
+
+        <div class="timer" id="paymentTimer">03:00</div>
+
+        <p class="order-notice">
+            <i class="fas fa-info-circle"></i> Please complete the payment within the given time. Your order confirmation may take a few moments after payment.
+        </p>
+
+        <p class="reassurance-message" id="reassuranceMsg">
+            <i class="fas fa-handshake"></i> Once payment is confirmed, our executive will swiftly place your order. Please don't panic!
+        </p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Yummy Express. All rights reserved. <br> <a href="(07) About Us.html">Privacy Policy</a> | <a href="(08) Help and Support.html">Terms & Conditions</a></p>
+
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/message/G3OECKFIDWUVP1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/yumm.yexpress?igsh=NTc4MTIwNjQ2YQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const upiBtn = document.getElementById('upiBtn');
+        const qrCodeBtn = document.getElementById('qrCodeBtn');
+        const upiDetails = document.getElementById('upiDetails');
+        const qrCodeDetails = document.getElementById('qrCodeDetails');
+        const paymentTimer = document.getElementById('paymentTimer');
+        const reassuranceMsg = document.getElementById('reassuranceMsg'); // Get the new message element
+        const companyUpiId = "yummyexpress@bankname"; // Define UPI ID here
+
+        // Function to switch payment method display
+        function showPaymentMethod(method) {
+            upiDetails.classList.remove('active');
+            qrCodeDetails.classList.remove('active');
+            upiBtn.classList.remove('active');
+            qrCodeBtn.classList.remove('active');
+
+            if (method === 'upi') {
+                upiDetails.classList.add('active');
+                upiBtn.classList.add('active');
+            } else if (method === 'qr') {
+                qrCodeDetails.classList.add('active');
+                qrCodeBtn.classList.add('active');
+            }
+        }
+
+        upiBtn.addEventListener('click', () => showPaymentMethod('upi'));
+        qrCodeBtn.addEventListener('click', () => showPaymentMethod('qr'));
+        const codBtn = document.getElementById('codBtn');
+        const codDetails = document.getElementById('codDetails');
+        const completePurchaseBtn = document.getElementById('completePurchaseBtn');
+
+        // Function to switch payment method display
+        function showPaymentMethod(method) {
+            upiDetails.classList.remove('active');
+            qrCodeDetails.classList.remove('active');
+            codDetails.style.display = 'none';
+            upiBtn.classList.remove('active');
+            qrCodeBtn.classList.remove('active');
+            codBtn.classList.remove('active');
+            completePurchaseBtn.style.display = 'none';
+
+            if (method === 'upi') {
+                upiDetails.classList.add('active');
+                upiBtn.classList.add('active');
+            } else if (method === 'qr') {
+                qrCodeDetails.classList.add('active');
+                qrCodeBtn.classList.add('active');
+            } else if (method === 'cod') {
+                codDetails.style.display = 'block';
+                codBtn.classList.add('active');
+                completePurchaseBtn.style.display = 'inline-block';
+            }
+        }
+
+        upiBtn.addEventListener('click', () => showPaymentMethod('upi'));
+        qrCodeBtn.addEventListener('click', () => showPaymentMethod('qr'));
+        codBtn.addEventListener('click', () => showPaymentMethod('cod'));
+
+        completePurchaseBtn.addEventListener('click', () => {
+            alert('Thank you for choosing Cash On Delivery! Your order has been placed.');
+            window.location.href = "Order Confirm.html";
+        });
+
+        // UPI ID Copy functionality
+        document.querySelector('.upi-id').addEventListener('click', () => {
+            navigator.clipboard.writeText(companyUpiId)
+                .then(() => {
+                    alert('UPI ID copied to clipboard: ' + companyUpiId);
+                })
+                .catch(err => {
+                    console.error('Failed to copy UPI ID: ', err);
+                    alert('Failed to copy UPI ID. Please copy manually: ' + companyUpiId);
+                });
+        });
+
+        // Timer functionality
+        let timeLeft = 3 * 60; // 3 minutes in seconds
+        let timerInterval;
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            paymentTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                paymentTimer.textContent = 'Time Expired!';
+                paymentTimer.style.color = '#dc3545'; // Professional red for expired
+                alert('Payment time has expired. Please refresh the page to try again or contact support.');
+                // Disable buttons and hide payment details on expiration
+                upiBtn.disabled = true;
+                qrCodeBtn.disabled = true;
+                codBtn.disabled = true;
+                upiBtn.classList.remove('active');
+                qrCodeBtn.classList.remove('active');
+                codBtn.classList.remove('active');
+                upiDetails.classList.remove('active');
+                qrCodeDetails.classList.remove('active');
+                codDetails.style.display = 'none';
+                reassuranceMsg.classList.remove('show'); // Hide reassurance message if timer expires
+                window.location.href = "Order Confirm.html";
+            }
+            timeLeft--;
+        }
+
+        // Start the timer when the page loads
+        timerInterval = setInterval(updateTimer, 1000);
+        updateTimer(); // Call once immediately to display initial time
+
+        // Show the reassurance message after a delay
+        setTimeout(() => {
+            reassuranceMsg.classList.add('show');
+        }, 1500); // 1.5 seconds delay
+    </script>
+
+</body>
+</html>
