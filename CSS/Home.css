@@ -1,0 +1,452 @@
+
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f093fb, #f5576c);
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s ease infinite;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: #ff6347;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 1.8rem;
+            font-family: 'Nosifer', cursive;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            margin-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #f5576c;
+        }
+
+        /* Navbar Responsive */
+        @media (max-width: 768px) {
+            .navbar .navbar-nav .nav-link {
+                font-size: 1rem;
+            }
+        }
+
+        /* Header Section */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #ff6347, #f093fb);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header .logo-container img.logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header .logo-container img.logo:hover {
+            transform: scale(1.1);
+        }
+
+        header .brand-name h1 {
+            font-family: 'Nosifer', cursive;
+            font-size: 3.5rem;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            color: #111111;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        header .brand-name h1 span {
+            color: #f5576c;
+        }
+        header .brand-name h1 span.yummy-color {
+            color: #072217; /* very dark green */
+        }
+        header .brand-name h1 span.express-color {
+            color: #062819; /* very dark green */
+        }
+
+        header .brand-name p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box .fa-search {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Explore Dishes Section */
+        .explore-section {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .explore-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .dishes-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .dishes-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .dishes-container::-webkit-scrollbar-thumb {
+            background: #f5576c;
+            border-radius: 4px;
+        }
+
+        .dish-card {
+            flex: 0 0 auto;
+            background: #ff6347;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 220px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 140px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            object-fit: cover;
+        }
+
+        .dish-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dish-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .dish-details {
+            font-size: 0.9rem;
+            flex-grow: 1;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .dish-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f093fb;
+        }
+
+        /* Explore Dishes by Category Section */
+        #category-section {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+        }
+
+        .category-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .category-btn i {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        /* Icon circle styling for spherical icons */
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #ffffff, #d1d1d1);
+            box-shadow: 4px 4px 8px #b0b0b0, -4px -4px 8px #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-circle:hover {
+            background: radial-gradient(circle at center, #f5576c, #f093fb);
+            box-shadow: 4px 4px 12px #d94a5a, -4px -4px 12px #f4a1b1;
+        }
+
+        .icon-circle i {
+            color: #ff6347;
+            font-size: 3rem;
+            transition: color 0.3s ease;
+        }
+
+        .icon-circle:hover i {
+            color: white;
+        }
+
+        .category-btn:hover,
+        .category-btn:focus {
+            background-color: #f5576c;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 2rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3498db;
+        }
+
+        /* Floating Contact Button */
+        .contact-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #ff6347;
+            color: white;
+            font-size: 1.5rem;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.1);
+            background-color: #f093fb;
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 768px) {
+            header .brand-name h1 {
+                font-size: 2.8rem;
+            }
+
+            .dish-card {
+                width: 180px;
+            }
+
+            .category-btn {
+                width: 90px;
+                height: 90px;
+                font-size: 0.9rem;
+            }
+
+            .category-btn i {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .brand-name h1 {
+                font-size: 2.5rem;
+            }
+
+            .dish-card {
+                width: 140px;
+            }
+
+            .dish-name {
+                font-size: 1rem;
+            }
+
+            .dish-details {
+                font-size: 0.8rem;
+            }
+
+            .dish-price {
+                font-size: 1rem;
+            }
+
+            .category-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 0.8rem;
+            }
+
+            .category-btn i {
+                font-size: 1.8rem;
+            }
+        }
+            .dish-badge {
+                display: inline-block;
+                font-size: 0.6rem;
+                font-weight: 700;
+                padding: 2px 6px;
+                border-radius: 10px;
+                margin-left: 6px;
+                vertical-align: middle;
+                color: white;
+                text-transform: uppercase;
+                font-family: Arial, sans-serif;
+            }
+            .dish-badge.hot {
+                background-color: #e74c3c;
+            }
+            .dish-badge.trending {
+                background-color: #f39c12;
+            }
+            .dish-badge.new {
+                background-color: #27ae60;
+            }
